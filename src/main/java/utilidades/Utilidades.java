@@ -1,5 +1,9 @@
 package utilidades;
 
+import modelos.Coche;
+import modelos.Marca;
+
+import java.time.LocalDate;
 import java.util.List;
 
 public class Utilidades {
@@ -37,6 +41,37 @@ public class Utilidades {
         return nota_texto;
 
     }
+
+
+    public boolean esFechaActual(Coche coche){
+        LocalDate fecha = coche.getFechaMatriculacion();
+        boolean res = fecha.isAfter(LocalDate.now());
+        return res;
+    }
+
+
+    public Marca obtenerMarcasCoche(Coche coche){
+        List<Marca> marcasDelCoche = coche.getRuedas();
+        Marca marca = null;
+
+        for(Marca m : marcasDelCoche){
+
+            if(m.getNombre().equals("Ferrari")) {
+                marca = m;
+            }
+        }
+        return marca;
+    }
+
+
+
+
+
+
+
+
+
+
 
 
 }

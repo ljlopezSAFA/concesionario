@@ -1,6 +1,7 @@
 package modelos;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 
 public class Coche {
@@ -9,6 +10,7 @@ public class Coche {
     private LocalDate fechaMatriculacion;
     private Color color;
     private Marca marca;
+    private List<Marca> ruedas;
 
 
 
@@ -64,6 +66,14 @@ public class Coche {
 
     public void setMarca(Marca marca) {
         this.marca = marca;
+    }
+
+    public List<Marca> getRuedas() {
+        return ruedas;
+    }
+
+    public void setRuedas(List<Marca> ruedas) {
+        this.ruedas = ruedas;
     }
 
     @Override
