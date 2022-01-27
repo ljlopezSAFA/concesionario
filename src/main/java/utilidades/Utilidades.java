@@ -1,12 +1,15 @@
 package utilidades;
 
 import modelos.Coche;
+import modelos.Componente;
 import modelos.Marca;
 
 import java.time.LocalDate;
+import java.time.Period;
+import java.util.ArrayList;
 import java.util.List;
 
-public class Utilidades {
+public abstract class Utilidades {
 
 
     public static void pintarPorConsola(Object object){
@@ -50,22 +53,59 @@ public class Utilidades {
     }
 
 
-    public Marca obtenerMarcasCoche(Coche coche){
-        List<Marca> marcasDelCoche = coche.getRuedas();
-        Marca marca = null;
 
-        for(Marca m : marcasDelCoche){
 
-            if(m.getNombre().equals("Ferrari")) {
-                marca = m;
-            }
-        }
-        return marca;
+    //Metodo que a partir de un objeto de tipo coche que recibe como parámetro devuelva la edad de dicho coche
+
+    public static int calcularAntiguedadCoche(Coche coche1){
+        int resultado = 0;
+        LocalDate fechainicio = coche1.getFechaMatriculacion();
+
+        // fecha fin - fecha inicio
+        Period periodo = Period.between(fechainicio, LocalDate.now());
+        resultado = periodo.getYears();
+
+        return resultado;
     }
 
 
 
 
+    //Método para obtener la lista de todos los coche cuya marca es del pais que se pasa como parámetro
+
+    public static List<Coche> obtenerCochesDelPais(List<Coche> listaCoches, String pais){
+        List<Coche> listaCochesPais = new ArrayList<>();
+
+        for(Coche coche : listaCoches){
+
+            //Compruebo si el coche que estoy recorriendo es del mismo pais del que me pasan
+            if(coche.getMarca().getPais().equals(pais)){
+
+                //Añadimos el coche a la lista que vamos a devolver
+                listaCochesPais.add(coche);
+            }
+        }
+        return listaCochesPais;
+
+    }
+
+
+
+    public static Double obtenerPrecioCochePorComponentes(Coche coche){
+
+        Double importeTotal = 0.0;
+
+        for(Componente compo : coche.getComponentes()){
+
+            importeTotal += compo.getPrecio();
+
+        }
+
+
+        return importeTotal;
+
+
+    }
 
 
 

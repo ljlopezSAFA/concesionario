@@ -10,7 +10,8 @@ public class Coche {
     private LocalDate fechaMatriculacion;
     private Color color;
     private Marca marca;
-    private List<Marca> ruedas;
+    private List<Componente> componentes;
+
 
 
 
@@ -68,12 +69,12 @@ public class Coche {
         this.marca = marca;
     }
 
-    public List<Marca> getRuedas() {
-        return ruedas;
+    public List<Componente> getComponentes() {
+        return componentes;
     }
 
-    public void setRuedas(List<Marca> ruedas) {
-        this.ruedas = ruedas;
+    public void setComponentes(List<Componente> componentes) {
+        this.componentes = componentes;
     }
 
     @Override
