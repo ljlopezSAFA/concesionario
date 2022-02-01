@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public abstract class Utilidades {
 
@@ -90,6 +91,16 @@ public abstract class Utilidades {
     }
 
 
+    public static List<Coche> obtenerCochesDelPaisStream(List<Coche> listaCoches, String pais){
+        return  listaCoches
+                .stream()
+                .filter(c -> c.getMarca().getPais().equals(pais))
+                .collect(Collectors.toList());
+    }
+
+
+
+
 
     public static Double obtenerPrecioCochePorComponentes(Coche coche){
 
@@ -100,12 +111,16 @@ public abstract class Utilidades {
             importeTotal += compo.getPrecio();
 
         }
-
-
         return importeTotal;
 
+    }
+
+    public static Double obtenerPrecioCochePorComponentesStream(Coche coche){
+
+        return coche.getComponentes().stream().mapToDouble(comp-> comp.getPrecio()).sum();
 
     }
+
 
 
 
