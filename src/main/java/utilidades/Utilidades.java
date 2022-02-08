@@ -7,11 +7,14 @@ import modelos.Marca;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public abstract class Utilidades {
 
+    public Utilidades() {
+    }
 
     public static void pintarPorConsola(Object object){
         System.out.println(object);
@@ -31,20 +34,28 @@ public abstract class Utilidades {
 
         if(nota_media < 5.0){
             nota_texto = "Suspenso";
-        }
-        if(nota_media >= 5.0 && nota_media < 7.0){
+        }else if(nota_media >= 5.0 && nota_media < 7.0){
             nota_texto = "Aprobado";
-        }
-        if(nota_media >= 7.0 && nota_media < 9.0){
+        }else if(nota_media >= 7.0 && nota_media < 9.0){
             nota_texto = "Notable";
-        }
-        if(nota_media >= 9.0){
+        }else{
             nota_texto = "Sobresaliente";
         }
+
+        //condicion ? que hago si se cumple : que hago si no se cumple;
+        nota_texto = nota_media < 5.0 ? "Suspenso" : nota_media >= 5.0 && nota_media < 7.0 ?
+                "Aprobado" : nota_media >= 7.0 && nota_media < 9.0 ? "Notable" : "Sobresaliente";
+
 
         return nota_texto;
 
     }
+
+
+
+
+
+
 
 
     public boolean esFechaActual(Coche coche){
@@ -52,6 +63,10 @@ public abstract class Utilidades {
         boolean res = fecha.isAfter(LocalDate.now());
         return res;
     }
+
+
+
+
 
 
 
@@ -121,6 +136,18 @@ public abstract class Utilidades {
 
     }
 
+    public void pintarPorPantalla(Object o){
+
+        System.out.println(o);
+    }
+
+
+
+
+    public static List<Coche> obtenerCochesordenadorPorPais(List<Coche> listaCoches){
+        listaCoches.sort(Comparator.comparing(c-> c.getMarca().getPais()));
+        return listaCoches;
+    }
 
 
 

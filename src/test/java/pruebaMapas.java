@@ -57,14 +57,8 @@ public class pruebaMapas {
         obtencionValoresPorClave.isEmpty();
 
 
-
         System.out.println(cochesAgrupadosPorMarca);
         System.out.println(obtencionValoresPorClave);
-
-
-
-
-
 
 
     }
