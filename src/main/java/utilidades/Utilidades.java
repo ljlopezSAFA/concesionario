@@ -1,8 +1,6 @@
 package utilidades;
 
-import modelos.Coche;
-import modelos.Componente;
-import modelos.Marca;
+import modelos.*;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -150,6 +148,23 @@ public abstract class Utilidades {
     }
 
 
+
+    public List<Cell> getMovilPorTacticYFunda(Estuche esctuche){
+
+        List<Cell> recipiente = new ArrayList<>();
+
+        for(Cell movilQueEstoyMirando : esctuche.getMoviles()){
+
+            if(movilQueEstoyMirando.isTactil() && movilQueEstoyMirando.isFunda()){
+
+                recipiente.add(movilQueEstoyMirando);
+
+
+            }
+        }
+
+        return recipiente ;
+    }
 
 
 
