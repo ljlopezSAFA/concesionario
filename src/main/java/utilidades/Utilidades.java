@@ -14,6 +14,11 @@ public abstract class Utilidades {
     public Utilidades() {
     }
 
+
+    public static int getRandomNumber(int min, int max) {
+        return (int) ((Math.random() * (max - min)) + min);
+    }
+
     public static void pintarPorConsola(Object object){
         System.out.println(object);
     }
@@ -28,7 +33,7 @@ public abstract class Utilidades {
         }
 
         Double nota_media = suma_notas / lista_notas.size();
-        String nota_texto = "";
+        String nota_texto = "Suspenso";
 
         if(nota_media < 5.0){
             nota_texto = "Suspenso";
@@ -36,13 +41,13 @@ public abstract class Utilidades {
             nota_texto = "Aprobado";
         }else if(nota_media >= 7.0 && nota_media < 9.0){
             nota_texto = "Notable";
-        }else{
+        }else if( nota_media > 9.0){
             nota_texto = "Sobresaliente";
         }
 
         //condicion ? que hago si se cumple : que hago si no se cumple;
-        nota_texto = nota_media < 5.0 ? "Suspenso" : nota_media >= 5.0 && nota_media < 7.0 ?
-                "Aprobado" : nota_media >= 7.0 && nota_media < 9.0 ? "Notable" : "Sobresaliente";
+        //nota_texto = nota_media < 5.0 ? "Suspenso" : nota_media >= 5.0 && nota_media < 7.0 ?
+        //        "Aprobado" : nota_media >= 7.0 && nota_media < 9.0 ? "Notable" : "Sobresaliente";
 
 
         return nota_texto;
@@ -52,20 +57,11 @@ public abstract class Utilidades {
 
 
 
-
-
-
-
     public boolean esFechaActual(Coche coche){
         LocalDate fecha = coche.getFechaMatriculacion();
         boolean res = fecha.isAfter(LocalDate.now());
         return res;
     }
-
-
-
-
-
 
 
 

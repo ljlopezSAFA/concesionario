@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 public class UtilidadesCoche {
@@ -21,6 +22,8 @@ public class UtilidadesCoche {
 
     public static List<Coche> crearListaCoches() {
         List<Coche> listaCoches = new ArrayList<>();
+
+
 
         //Creamos los cohces
         Coche coche1 = new Coche("1234AAA", LocalDate.of(2015, 5, 16));
@@ -37,10 +40,12 @@ public class UtilidadesCoche {
         //Ponemos a los coches su marca
         List<Marca> marcas = UtilidadesMarca.crearListaMarcas();
         listaCoches.stream().forEach(c -> c.setMarca(marcas.get(listaCoches.indexOf(c))));
+        listaCoches.stream().forEach(c -> c.setColor(Color.colorList().get(Utilidades.getRandomNumber(0,Color.colorList().size()-1))));
+
         return listaCoches;
     }
 
-    public List<Coche> getCochesPorColor(List<Coche> cocheList, Color color) {
+    public static List<Coche> getCochesPorColor(List<Coche> cocheList, Color color) {
 
         List<Coche> cochesADevolver = new ArrayList<>();
 
@@ -51,8 +56,6 @@ public class UtilidadesCoche {
                 cochesADevolver.add(c);
             }
         }
-
-        cochesADevolver.sort(Comparator.comparing(c -> c.getMarca().getNombre()));
 
         return cochesADevolver;
     }
