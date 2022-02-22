@@ -2,13 +2,11 @@ package utilidades;
 
 import modelos.Coche;
 import modelos.Color;
+import modelos.Componente;
 import modelos.Marca;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class UtilidadesCoche {
@@ -63,6 +61,29 @@ public class UtilidadesCoche {
 
     public List<Coche> getCochesPorColorJava8(List<Coche> cocheList, Color color) {
         return cocheList.stream().filter(c -> c.getColor().equals(color)).collect(Collectors.toList());
+
+    }
+
+
+    public static Map<Coche, Componente> getComponenteMasCaroPorCoche(List<Coche> coches){
+        Map<Coche, Componente> mapafinal = new HashMap<>();
+
+        for(Coche c : coches){
+            Componente componenteMasCaro = null;
+
+            for(Componente comp: c.getComponentes()){
+                if(componenteMasCaro == null || comp.getPrecio() > componenteMasCaro.getPrecio()){
+                    componenteMasCaro = comp;
+                }
+            }
+
+
+            mapafinal.put(c, componenteMasCaro);
+        }
+
+
+
+        return mapafinal;
 
     }
 
